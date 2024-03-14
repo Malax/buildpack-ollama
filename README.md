@@ -7,6 +7,9 @@
 
 This buildpack builds an OCI image with [Ollama](https://ollama.com/) and a large language model. Configure your model by an Ollama `Modelfile` or use any of the [ready-made models available](https://ollama.com/library).
 
+> [!NOTE]
+> This is an early version of this buildpack. Please report any issues you find so they can get fixed quickly.
+
 ## Installing
 
 The buildpack is currently only available on GitHub. Download the [most recent version from the releases](releases/latest). This buildpack supports both `amd64` and `arm64` architectures.
