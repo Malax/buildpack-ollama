@@ -15,7 +15,7 @@ The buildpack is currently only available on GitHub. Download the [most recent v
 All the buildpack requires is a `Modelfile` that defines the model. The [`examples`](examples/) directory has a couple of examples. Point `pack` to the Ollama buildpack and the directory containing the `Modelfile` to build your image:
 
 ```
-pack build my-image -B ollama.cnb --path examples/llama2-cnb-praise
+pack build my-image -b ollama.cnb --path examples/llama2-cnb-praise
 ```
 
 After the image has been built, run it with Docker. You also have to map the Ollama port (`11434`) from the container to your local machine to be able to connect to it:
