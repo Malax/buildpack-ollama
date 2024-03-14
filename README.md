@@ -3,6 +3,7 @@
 </div>
 
 # Ollama Cloud Native Buildpack
+[![CI](https://github.com/malax/buildpack-ollama/actions/workflows/ci.yml/badge.svg)](https://github.com/malax/buildpack-ollama/actions/workflows/ci.yml)
 
 This buildpack builds an OCI image with [Ollama](https://ollama.com/) and a large language model. Configure your model by an Ollama `Modelfile` or use any of the [ready-made models available](https://ollama.com/library).
 
