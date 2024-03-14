@@ -1,0 +1,12 @@
+[package]
+name = "buildpack-ollama"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libcnb = "0.19"
+serde = { version = "1.0", features = ["derive"] }
+libherokubuildpack = "0.19"
+ureq = "2.9"
+exponential-backoff = "1"
+thiserror = "1"
