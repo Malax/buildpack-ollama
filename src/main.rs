@@ -122,7 +122,7 @@ impl Buildpack for OllamaBuildpack {
                 "create",
                 "custom_model",
                 "-f",
-                &ollama_modelfile_path.to_string_lossy().to_string(),
+                ollama_modelfile_path.to_string_lossy().as_ref(),
             ])
             .envs(&env)
             .spawn()

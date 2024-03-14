@@ -12,7 +12,7 @@ pub fn set_executable<P: AsRef<Path>>(path: P) -> std::io::Result<()> {
     std::fs::set_permissions(path.as_ref(), new_permissions)
 }
 
-pub(crate) fn wait_for_http_200(url: &str) -> Result<Duration, ureq::Error> {
+pub(crate) fn wait_for_http_200(url: &str) -> Result<Duration, Box<ureq::Error>> {
     let backoff =
         exponential_backoff::Backoff::new(32, Duration::from_millis(10), Duration::from_secs(60));
 
@@ -23,7 +23,7 @@ pub(crate) fn wait_for_http_200(url: &str) -> Result<Duration, ureq::Error> {
         match ureq::get(url).call() {
             Ok(_) => return Ok(backoff_acc),
             Err(error) => match backoff_durations.next() {
-                None => return Err(error),
+                None => return Err(Box::new(error)),
                 Some(backoff_duration) => {
                     std::thread::sleep(backoff_duration);
                     backoff_acc += backoff_duration;

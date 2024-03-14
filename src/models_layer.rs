@@ -31,7 +31,7 @@ impl Layer for ModelsLayer {
                 Scope::All,
                 ModificationBehavior::Override,
                 "OLLAMA_MODELS",
-                &layer_path.to_string_lossy().to_string(),
+                layer_path.to_string_lossy().to_string(),
             ))
             .build()
     }

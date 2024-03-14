@@ -6,7 +6,7 @@ pub(crate) enum OllamaBuildpackError {
     #[error("Could not start Ollama server: {0}")]
     OllamaServeIoError(std::io::Error),
     #[error("Ollama server does not respond: {0}")]
-    OllamaServerUnresponsive(ureq::Error),
+    OllamaServerUnresponsive(Box<ureq::Error>),
     #[error("Could not pull Ollama model: {0}")]
     OllamaPullIoError(std::io::Error),
     #[error("Could not pull Ollama model, unexpected exit status: {0}")]
