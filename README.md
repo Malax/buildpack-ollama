@@ -12,7 +12,7 @@ This buildpack builds an OCI image with [Ollama](https://ollama.com/) and a larg
 
 ## Installing
 
-The buildpack is currently only available on GitHub. Download the [most recent version from the releases](releases/latest). This buildpack supports both `amd64` and `arm64` architectures.
+The buildpack is currently only available on GitHub. Download the [most recent version from the releases](https://github.com/Malax/buildpack-ollama/releases/latest). This buildpack supports both `amd64` and `arm64` architectures.
 
 ## Getting Started
 
