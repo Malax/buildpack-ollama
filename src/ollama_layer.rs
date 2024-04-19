@@ -35,7 +35,7 @@ impl Layer for OllamaLayer {
 
     fn create(
         &mut self,
-        context: &BuildContext<Self::Buildpack>,
+        _context: &BuildContext<Self::Buildpack>,
         layer_path: &Path,
     ) -> Result<LayerResult<Self::Metadata>, <Self::Buildpack as Buildpack>::Error> {
         let bin_dir = layer_path.join("bin");
@@ -43,11 +43,8 @@ impl Layer for OllamaLayer {
 
         fs::create_dir_all(bin_dir).map_err(OllamaBuildpackError::GenericIoError)?;
 
-        libherokubuildpack::download::download_file(
-            &context.buildpack_descriptor.metadata.amd64_download_url,
-            &ollama_path,
-        )
-        .map_err(OllamaBuildpackError::OllamaDownloadError)?;
+        libherokubuildpack::download::download_file(self.url.clone(), &ollama_path)
+            .map_err(OllamaBuildpackError::OllamaDownloadError)?;
 
         set_executable(&ollama_path).map_err(OllamaBuildpackError::GenericIoError)?;
 
