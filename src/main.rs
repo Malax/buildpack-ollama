@@ -49,7 +49,6 @@ impl Buildpack for OllamaBuildpack {
 
         let mut env = Env::from_current();
 
-        libherokubuildpack::log::log_header("Installing Ollama");
         let ollama_layer = context.handle_layer(
             layer_name!("ollama"),
             OllamaLayer {
