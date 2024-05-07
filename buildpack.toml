@@ -25,5 +25,5 @@ id = "*"
 
 [metadata]
 ollama_version = "0.1.28"
-amd64_download_url = "https://github.com/ollama/ollama/releases/download/v0.1.28/ollama-linux-amd64"
-arm64_download_url = "https://github.com/ollama/ollama/releases/download/v0.1.28/ollama-linux-arm64"
+amd64_download_url = "https://github.com/ollama/ollama/releases/download/v0.1.32/ollama-linux-amd64"
+arm64_download_url = "https://github.com/ollama/ollama/releases/download/v0.1.32/ollama-linux-arm64"
