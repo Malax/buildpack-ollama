@@ -3,9 +3,8 @@ use crate::util::set_executable;
 use crate::OllamaBuildpack;
 use libcnb::build::BuildContext;
 use libcnb::data::layer_content_metadata::LayerTypes;
-use libcnb::layer::{ExistingLayerStrategy, Layer, LayerData, LayerResult, LayerResultBuilder};
-use libcnb::layer_env::{LayerEnv, ModificationBehavior, Scope};
-use libcnb::Buildpack;
+use libcnb::layer::{Layer, LayerResult, LayerResultBuilder};
+use libcnb::{additional_buildpack_binary_path, Buildpack};
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::Path;
@@ -29,7 +28,7 @@ impl Layer for OllamaLayer {
         LayerTypes {
             launch: true,
             build: true,
-            cache: true,
+            cache: false,
         }
     }
 
@@ -54,31 +53,10 @@ impl Layer for OllamaLayer {
             version: self.version.clone(),
             url: download_url,
         })
-        .env(LayerEnv::new().chainable_insert(
-            Scope::All,
-            ModificationBehavior::Override,
-            "OLLAMA_HOST",
-            "0.0.0.0",
-        ))
-        .build()
-    }
-
-    fn existing_layer_strategy(
-        &mut self,
-        _context: &BuildContext<Self::Buildpack>,
-        layer_data: &LayerData<Self::Metadata>,
-    ) -> Result<ExistingLayerStrategy, <Self::Buildpack as Buildpack>::Error> {
-        let expected_metadata = OllamaLayerMetadata {
-            version: self.version.clone(),
-            url: self.url.clone(),
-        };
-
-        Ok(
-            if layer_data.content_metadata.metadata == expected_metadata {
-                ExistingLayerStrategy::Keep
-            } else {
-                ExistingLayerStrategy::Recreate
-            },
+        .exec_d_program(
+            "ollama_env",
+            additional_buildpack_binary_path!("ollama_env"),
         )
+        .build()
     }
 }
