@@ -8,5 +8,5 @@ libcnb = "0.19"
 serde = { version = "1.0", features = ["derive"] }
 libherokubuildpack = "0.19"
 ureq = "2.10"
-exponential-backoff = "1"
+exponential-backoff = "2"
 thiserror = "1"
